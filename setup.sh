@@ -31,7 +31,7 @@ if [ ! -d $WORK/Models ]; then
 		    for var_rplum in {20.0,25.0,60.0}
 		    do
 			i=$((i+1))
-			for j in {1..5}
+			for j in {6..10}
 			do
 #		for k in {0..4}
 #		do
@@ -50,4 +50,6 @@ if [ ! -d $WORK/Models ]; then
 	done
     done
     bash $RES/files/scripts/gen_paramlist.sh
+else
+    echo "check existing Models"
 fi
