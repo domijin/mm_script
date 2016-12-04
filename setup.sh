@@ -39,8 +39,8 @@ if [ ! -d $WORK/Models ]; then
 #		    then
 #			rm -r model-$i-$j
 			    mkdir model-$i-$j
-			    cp ../mocca.ini model-$i-$j/.
-			    cp ../mocca-072016 model-$i-$j/mocca-$i-$j
+			    cp $RES/files/bak/mocca.ini  model-$i-$j/.
+			    cp $RES/files/bak/mocca-072016 model-$i-$j/mocca-$i-$j
 			    sed -i.bak "s|var_n|${var_n}|g ;s|var_z|${var_z}|g ;s|var_fb|${var_fb}|g ;s|var_rplum|${var_rplum}|g ;s|var_rt|${var_rt}|g" model-$i-$j/mocca.ini
 #	    	    fi
 			done
@@ -49,7 +49,7 @@ if [ ! -d $WORK/Models ]; then
 	    done
 	done
     done
-    bash $RES/files/scripts/gen_paramlist.sh
+    bash $RES/files/mm_script/gen_paramlist.sh
 else
     echo "check existing Models"
 fi
