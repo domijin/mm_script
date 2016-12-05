@@ -5,9 +5,9 @@ njob=16
 
 runid=`ls $WORK/stdout/ | wc -l`
 if [ ! -e $WORK/paramlist ]; then
-    if [ -e $RES/res/unfinished.list ]; then
-	njob=`cat $RES/unfinished.list | wc -l`
-	bash $RES/files/scripts/relaunch.sh
+    if [ -e $WORK/unfinished.list ]; then
+	njob=`cat $WORK/unfinished.list | wc -l`
+	bash $RES/files/mm_script/relaunch.sh
 	if [ $njob -le 8 ]; then
 	    sed -ri.bak "s/SBATCH -N [0-9]*/SBATCH -N 1/g" $WORK/relauncher.slurm
 	    sed -ri.bak "s/SBATCH -n [0-9]*/SBATCH -n $((njob*2))/g" $WORK/relauncher.slurm
@@ -42,7 +42,7 @@ if [ ! -e $WORK/paramlist ]; then
             mv $WORK/paramlist $pfile-$((runs+1))
 	fi
     else
-	ct=`ls $WORK | grep ct`
+	ct=`ls $WORK/param | grep ct`
 	ct=${ct:3}
 	tail -n $((ct+njob)) $WORK/paramlist_all | head -n $njob > $WORK/paramlist
 	sbatch $WORK/launcher.slurm

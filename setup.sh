@@ -1,4 +1,24 @@
 #!/bin/bash
+
+:<<'END'
+required:
+-------
+   $RES/files/mm_script
+	job.sh 		  cp
+	launcher.slurm    cp
+   $RES/files/bak/
+	mocca.ini
+	mocca-072016
+
+output:
+-----
+   $WORK/Models
+   	/res
+	/param
+	    ct=0
+	/stdout
+END
+
 RES='/work/04159/domij'
 WORK='/scratch/04159/domij'
 
@@ -49,7 +69,18 @@ if [ ! -d $WORK/Models ]; then
 	    done
 	done
     done
-    bash $RES/files/mm_script/gen_paramlist.sh
+    mkdir $WORK/param
+    touch $WORK/param/ct=0
+    cp $RES/files/mm_script/job.sh $WORK/param/
+    cp $RES/files/mm_script/launcher.slurm $WORK/param
+
+    for model in `ls -d $WORK/Models/model-* | rev | cut -d '/' -f 1 | rev`
+    do
+    	model=${model:6}
+    	echo "./job.sh" $model "\$TACC_LAUNCHER_JID" >> $WORK/param/paramlist_all
+    done
+
+    mkdir $WORK/stdout
 else
     echo "check existing Models"
 fi
