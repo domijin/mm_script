@@ -70,9 +70,10 @@ if [ ! -d $WORK/Models ]; then
 	done
     done
     mkdir $WORK/param
+    mkdir $WORK/param/stdout
     touch $WORK/param/ct=0
     cp $RES/files/mm_script/job.sh $WORK/param/
-    cp $RES/files/mm_script/launcher.slurm $WORK/param
+    cp $RES/files/mm_script/launcher.slurm $WORK/param/
 
     for model in `ls -d $WORK/Models/model-* | rev | cut -d '/' -f 1 | rev`
     do
@@ -80,7 +81,6 @@ if [ ! -d $WORK/Models ]; then
     	echo "./job.sh" $model "\$TACC_LAUNCHER_JID" >> $WORK/param/paramlist_all
     done
 
-    mkdir $WORK/stdout
 else
     echo "check existing Models"
 fi
