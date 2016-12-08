@@ -3,7 +3,6 @@ ct=0
 ctr=0
 ctd=0
 donelist=''
-RES="/work/04159/domij/res"
 WORK="/scratch/04159/domij"
 for model in `cat $(ls $WORK/param/paramlist* | grep -ve _ -e - ) | awk '{print $2}'`
 do
@@ -29,15 +28,15 @@ do
 	    echo model-$model "needs relaunch"
 	    ctr=$((ctr+1))
 	    flag=0
-	    if [[ -e $RES/unfinished.list ]]; then
-		for rerun in `awk '{print $1}' $RES/unfinished.list`
+	    if [[ -e $WORK/res/unfinished.list ]]; then
+		for rerun in `awk '{print $1}' $WORK/res/unfinished.list`
 		do
 		    if [[ "model-$model" == "$rerun" ]]; then
 			flag=1
 		    fi
 		done
 		if [[ $flag -eq 0 ]] && [[ ! -e $WORK/paramlist ]] ; then
-		    echo model-$model "check to be sure" >> $RES/unfinished.list 
+		    echo model-$model "check to be sure" >> $WORK/res/unfinished.list 
 		fi
 	    fi
 	fi

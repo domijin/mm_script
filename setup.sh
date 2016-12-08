@@ -7,15 +7,18 @@ required:
 	job.sh 		  cp
 	launcher.slurm    cp
    $RES/files/bak/
-	mocca.ini
-	mocca-072016
+	mocca.ini	  cp
+	mocca-072016	  cp
 
 output:
 -----
    $WORK/Models
-   	/res
+	    ...
 	/param
 	    ct=0
+	    paramlist_all
+	    job.sh
+	    launcher.slurm
 	/stdout
 END
 
