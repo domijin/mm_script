@@ -38,8 +38,12 @@ do
 	else
 	    ctr=$((ctr+1))
 	    if grep -Fsq model-$model $WORK/paramlist; then
-		echo model-$model 'marked as unfinished, check before bash relaunch.sh'
-		ctr=$((ctr-1))
+		echo model-$model 'queued to be relaunched'
+	    else
+		if grep -Fsq model-$model $WORK/res/unfinished.list; then
+		    echo model-$model 'marked as unfinished, check before bash relaunch.sh'
+		    ctr=$((ctr-1))
+	        fi
 	    fi
 	fi
     else

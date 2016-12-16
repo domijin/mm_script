@@ -20,7 +20,7 @@ else
 	sleep 2
     done
 
-    if [[ -s *-output.dat ]]; then   # if file not empty then
+    if [[ -s $jid-output.dat ]]; then   # if file not empty then
 	if [[ `tail -n 1 *-output.dat | awk '{print $1}'` == "restart.fil"  ]]; then
 
 # ejected BH system
