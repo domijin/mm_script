@@ -1,5 +1,6 @@
+These are the scripts to manage my GC simulations on TACC. 
 
-## extract data 
+## some note on extract data 
 
 > \> *-bhe.dat
 
@@ -37,7 +38,7 @@ awk '$4=="###" {TIME=$2} TIME>12000 && TIME<12050 && ($8==14 || $9==14) {printf(
 awk '$8>100 {printf("%2.4f Gyrs %2d %5.4f M_sol %d %d %d\n",$2/1000.0,$6,$8,$7,$4,$5)}' escape.dat 
 ```
 
-###Variable in Files
+### Variable in Files
 
 ```
 Qualities from escape_binary.dat (1:47)
